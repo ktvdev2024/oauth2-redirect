@@ -3,103 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentifizierung</title>
+    <title>Autorisierungscode</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: #121212;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #e0e0e0;
+            color: #333;
+            background: linear-gradient(135deg, #d52eff, #f27aff);
+            background-attachment: fixed;
+            background-size: cover;
             position: relative;
+            overflow: hidden;
         }
 
-        .container {
-            background: #1e1e1e;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 24px;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-
-        .code-box {
-            font-size: 16px;
-            font-family: 'Courier New', monospace;
-            background-color: #333;
-            border: 1px solid #555;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: pre-wrap;
-            display: inline-block;
-            width: 100%;
-            color: #e0e0e0;
-        }
-
-       
-        .copy-btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background-color: #45a049;
-        }
-
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 5px;
-            font-size: 16px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease, top 0.3s ease;
-        }
-
-        .notification.show {
-            display: block;
-            opacity: 1;
-            top: 20px;
-        }
-
-       
         body::before {
             content: '';
             position: absolute;
@@ -107,54 +28,104 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
-                              linear-gradient(45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 30px 30px, 10px 10px;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: 0;
         }
 
-        
-        .version-time {
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #d52eff; 
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .code-box {
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .copy-btn {
+            background-color: #d52eff; 
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #b020d1; 
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        .footer {
             position: fixed;
             bottom: 10px;
             left: 10px;
             font-size: 14px;
-            color: #bbb;
-            z-index: 2;
-            display: flex;
-            align-items: center;
+            color: #fff;
+            z-index: 1;
         }
-
-        .time {
-            margin-left: 10px;
-            font-size: 14px;
-            color: #bbb;
-        }
-
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Dein Autorisierungscode</h1>
-        <p>Bitte gib den folgenden Code in der App ein, um fortzufahren:</p>
+        <p>Bitte gib den folgenden Code in der App ein:</p>
         
         <div class="code-box" id="code">
             Warten auf Code...
         </div>
 
-        <button class="copy-btn" id="copyBtn">Kopieren</button>
-
+        <button class="copy-btn" id="copyBtn">Code kopieren</button>
     </div>
 
+    <div class="notification" id="notification">Der Code wurde erfolgreich kopiert!</div>
 
-    <div class="notification" id="notification">
-        Code wurde in die Zwischenablage kopiert!
-    </div>
-
-    <div class="version-time">
-		 <div class="version">Version 1.0.0</div>
-		 <div class="time" id="time">00:00:00 </div>
-    </div>
+    <div class="footer" id="footer"></div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -184,16 +155,19 @@
                 });
         });
 
-        function updateTime() {
+        function updateFooter() {
             const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0'); 
+            const year = now.getFullYear();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const timeString = `${hours}:${minutes}:${seconds}`;
-            document.getElementById('time').textContent = timeString;
+            const footerText = `Version 1.0.1 - ${day}.${month}.${year} ${hours}:${minutes}`;
+            document.getElementById('footer').textContent = footerText;
         }
-
-        setInterval(updateTime, 1000);
+	    
+        updateFooter();
+        setInterval(updateFooter, 60000);
     </script>
 </body>
 </html>
