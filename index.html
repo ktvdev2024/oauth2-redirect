@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autorisierungscode</title>
-    <style>
+<style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -13,8 +13,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
-            background: linear-gradient(135deg, #d52eff, #f27aff);
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #1e1e1e, #121212);
             background-attachment: fixed;
             background-size: cover;
             position: relative;
@@ -34,7 +34,7 @@
         }
 
         .container {
-            background: white;
+            background: #2a2a2a;
             border-radius: 10px;
             padding: 40px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -47,29 +47,29 @@
 
         h1 {
             font-size: 24px;
-            color: #d52eff; 
+            color: #d52eff;
             margin-bottom: 20px;
         }
 
         p {
             font-size: 16px;
             margin-bottom: 20px;
-            color: #555;
+            color: #ccc;
         }
 
         .code-box {
             font-size: 18px;
             font-family: 'Courier New', monospace;
-            background-color: #f8f8f8;
-            border: 1px solid #ccc;
+            background-color: #3a3a3a;
+            border: 1px solid #555;
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
-            color: #333;
+            color: #e0e0e0;
         }
 
         .copy-btn {
-            background-color: #d52eff; 
+            background-color: #d52eff;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -80,7 +80,7 @@
         }
 
         .copy-btn:hover {
-            background-color: #b020d1; 
+            background-color: #b020d1;
         }
 
         .notification {
@@ -106,7 +106,7 @@
             bottom: 10px;
             left: 10px;
             font-size: 14px;
-            color: #fff;
+            color: #aaa;
             z-index: 1;
         }
     </style>
@@ -158,14 +158,15 @@
         function updateFooter() {
             const now = new Date();
             const day = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0'); 
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Monate von 0-11
             const year = now.getFullYear();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const footerText = `Version 1.0.1 - ${day}.${month}.${year} ${hours}:${minutes}`;
             document.getElementById('footer').textContent = footerText;
         }
-	    
+
+        // Footer direkt initialisieren und jede Minute aktualisieren
         updateFooter();
         setInterval(updateFooter, 60000);
     </script>
